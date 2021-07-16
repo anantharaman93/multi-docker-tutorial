@@ -18,7 +18,7 @@ services:
             - ./server:/home/node/app
         environment:
             - REDIS_HOST=redis
-            - REDIS_OIRT=6379
+            - REDIS_PORT=6379
             - PGUSER=postgres
             - PGHOST=postgres
             - PGDATABASE=postgres
