@@ -12,27 +12,27 @@ script:
   - docker run -e CI=true suraj1291993/react-test npm test
 
 after_success:
-  - docker build -t suraj1291993/multi-client ./client
-  - docker build -t suraj1291993/multi-nginx ./nginx
-  - docker build -t suraj1291993/multi-server ./server
-  - docker build -t suraj1291993/multi-worker ./worker
+  - docker build -t suraj1291993/multi-client:v5 ./client
+  - docker build -t suraj1291993/multi-nginx:v5 ./nginx
+  - docker build -t suraj1291993/multi-server:v5 ./server
+  - docker build -t suraj1291993/multi-worker:v5 ./worker
 
   # Log in the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Push to docker hub
-  - docker push suraj1291993/multi-client
-  - docker push suraj1291993/multi-nginx
-  - docker push suraj1291993/multi-server
-  - docker push suraj1291993/multi-worker
+  - docker push suraj1291993/multi-client:v5
+  - docker push suraj1291993/multi-nginx:v5
+  - docker push suraj1291993/multi-server:v5
+  - docker push suraj1291993/multi-worker:v5
 
-deploy:
-  provider: elasticbeanstalk
-  region: "ap-south-1"
-  app: "multi-docker-tutorial"
-  env: "Multidockertutorial-env"
-  bucket_name: "elasticbeanstalk-ap-south-1-988105863762"
-  bucket_path: "multi-docker-tutorial"
-  on:
-    branch: main
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
+# deploy:
+#   provider: elasticbeanstalk
+#   region: "ap-south-1"
+#   app: "multi-docker-tutorial"
+#   env: "Multidockertutorial-env"
+#   bucket_name: "elasticbeanstalk-ap-south-1-988105863762"
+#   bucket_path: "multi-docker-tutorial"
+#   on:
+#     branch: main
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key: $AWS_SECRET_KEY
